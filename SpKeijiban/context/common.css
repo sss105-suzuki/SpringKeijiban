@@ -1,0 +1,94 @@
+<!--
+
+/* ‡@div **************************************************************************************/
+div{
+}
+div.tytle{
+	width				: 1325px;
+	height				: 50px;
+	vertical-align		: middle;
+	display				: table-cell;
+}
+div.button{
+	width				: 1325px;
+	height				: 30px;
+	vertical-align		: middle;
+	display				: table-cell;
+}
+div.table{
+	width				: 1325px;
+}
+
+/* ‡A•¶Žš **************************************************************************************/
+em{
+	color				: black;
+	font-size			: 16;
+	font-style			: normal;
+}
+em.tytle{
+	font-size			: 24px;
+	font-style			: normal;
+	font-weight			: bold;
+}
+em.button{
+	text-decoration		: underline;
+}
+
+/* ‡Bth **************************************************************************************/
+th{
+}
+th.gray{
+	background-color	: #cccccc;
+	text-align			: center;
+}
+th.resnum{
+	width				: 60px;
+	text-align			: center;
+	vertical-align		: text-top;
+	display				: table-cell;
+	background-color	: #cccccc;
+}
+th.daytag{
+	width				: 60px;
+	text-align			: center;
+	background-color	: #cccccc;
+}
+th.date{
+	width				: 100px;
+	text-align			: center;
+}
+th.nametag{
+	width				: 60px;
+	text-align			: center;
+	background-color	: #cccccc;
+}
+th,name{
+	text-align			: left;
+}
+th.tytletag{
+	width				: 60px;
+	text-align			: center;
+	background-color	: #cccccc;
+}
+th.tytle{
+	text-align			: left;
+}
+th.message{
+	text-align			: left;
+	word-break			: break-all;
+	word-wrap			: break-word;
+	white-space			: pre-wrap;
+}
+
+/* ‡Ctable **************************************************************************************/
+table{
+	border-collapse		: collapse;
+}
+table.small{
+	border-collapse		: collapse;
+}
+table.big{
+	width				: 1325px;
+}
+
+-->
