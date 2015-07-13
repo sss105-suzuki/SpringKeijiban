@@ -14,10 +14,11 @@ import jp.co.soramasu.Interface.DB_Action;
 
 @Component
 public class CheckImp implements Check{
-//	private ConfigurableApplicationContext context = 
-//	          new ClassPathXmlApplicationContext("beans.xml");
-//	private final DB_Action login_tbl_act = context.getBean(DB_Action.class);
-	private final DB_ActionImp db_act = new DB_ActionImp();
+	//èëÇ´ä∑Ç¶ëO
+//	private final DB_ActionImp db_act = new DB_ActionImp();
+	//èëÇ´ä∑Ç¶å„
+	private ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+	private final DB_Action db_act = context.getBean(DB_Action.class);
 
 	public String checkPassword (String pass) {
 		String errorMessage = "";
