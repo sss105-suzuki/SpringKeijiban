@@ -5,20 +5,16 @@ import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Component;
-
 import jp.co.soramasu.Interface.Check;
-import jp.co.soramasu.Interface.DB_Action;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Component
 public class CheckImp implements Check{
 	//èëÇ´ä∑Ç¶ëO
-//	private final DB_ActionImp db_act = new DB_ActionImp();
-	//èëÇ´ä∑Ç¶å„
-	private ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-	private final DB_Action db_act = context.getBean(DB_Action.class);
+	@Autowired
+	private DB_ActionImp db_act;
 
 	public String checkPassword (String pass) {
 		String errorMessage = "";

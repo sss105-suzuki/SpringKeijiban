@@ -14,14 +14,17 @@ import jp.co.soramasu.Interface.DB_Action;
 import jp.co.soramasu.Interface.MessageList;
 import jp.co.soramasu.Interface.SingleMessage;
 
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class InputServlet extends HttpServlet {
-	private ConfigurableApplicationContext context = 
-	          new ClassPathXmlApplicationContext("beans.xml");
-	private final DB_Action message_tbl_act = context.getBean(DB_Action.class);
-	private final Check check_act = context.getBean(Check.class);
+	@Autowired
+	private DB_Action message_tbl_act;
+	@Autowired
+	private Check check_act;
+	@Autowired
+	private SingleMessage oldData;
+	@Autowired
+	private MessageList requestList;
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response)
@@ -31,7 +34,6 @@ public class InputServlet extends HttpServlet {
 		//‘‚«‚İ“o˜^
 		String inputType = request.getParameter("inputType");
 		//‹¤’Êˆ—
-		SingleMessage oldData = context.getBean(SingleMessage.class);
 		String errorMessage = "";
 		if ("new".equals(inputType)) {//V‹K‘‚«‚İ
 			String newName = request.getParameter("userName");
@@ -96,7 +98,6 @@ public class InputServlet extends HttpServlet {
 		request.setAttribute("InputError", errorMessage);
 		request.setAttribute("InputType", inputType);
 		//‘‚«‚İî•ñ‚Ìæ“¾
-		MessageList requestList = context.getBean(MessageList.class);
 		ResultSet rs = message_tbl_act.getAllMessage ();
 		try {
 			if (rs.next()) {

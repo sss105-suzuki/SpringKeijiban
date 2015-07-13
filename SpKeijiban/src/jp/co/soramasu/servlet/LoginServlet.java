@@ -14,14 +14,15 @@ import jp.co.soramasu.Interface.Check;
 import jp.co.soramasu.Interface.DB_Action;
 import jp.co.soramasu.Interface.MessageList;
 
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class LoginServlet extends HttpServlet {
-	private ConfigurableApplicationContext context = 
-	          new ClassPathXmlApplicationContext("beans.xml");
-	private final DB_Action login_tbl_act = context.getBean(DB_Action.class);
-	private final Check check_act = context.getBean(Check.class);
+	@Autowired
+	private DB_Action login_tbl_act;
+	@Autowired
+	private Check check_act;
+	@Autowired
+	private MessageList requestList;
 	
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response)
@@ -33,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 		//ì¸óÕÇ≥ÇÍÇΩï∂éöÇÃéÊìæ
 		String inputID = request.getParameter("userId");
 		String inputPass = request.getParameter("userPassWord");
-		String errorMessage = check_act.checkPassword(inputPass) + check_act.checkID(inputID);
+		String errorMessage = check_act.checkPassword(inputPass) + check_act.checkID(inputID);//NullPointerException
 		try {
 			while (en.hasMoreElements()) {
 				String action = en.nextElement();
@@ -41,7 +42,7 @@ public class LoginServlet extends HttpServlet {
 					errorMessage += check_act.checkLogin(inputPass, inputID);
 					if("".equals(errorMessage)){
 						//èëÇ´çûÇ›èÓïÒÇÃéÊìæ
-						MessageList requestList = context.getBean(MessageList.class);
+						
 						ResultSet rs = login_tbl_act.getAllMessage ();
 						if (rs.next()) {
 							rs.previous();

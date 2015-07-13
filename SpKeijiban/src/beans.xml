@@ -8,4 +8,6 @@
 		">
     <context:annotation-config />
     <context:component-scan base-package="jp.co.soramasu.common" />
+    <context:component-scan base-package="jp.co.soramasu.Interface" />
+    <context:component-scan base-package="jp.co.soramasu.servlet" />
 </beans>
