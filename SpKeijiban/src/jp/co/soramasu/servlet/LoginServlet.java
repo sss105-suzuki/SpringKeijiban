@@ -17,12 +17,30 @@ import jp.co.soramasu.Interface.MessageList;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class LoginServlet extends HttpServlet {
+//	private ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+	
+	//-DB_ActionImplのインスタンス生成---------------------------------------------------------------------
 	@Autowired
 	private DB_Action login_tbl_act;
+	
+//	private DB_Action login_tbl_act = context.getBean(DB_Action.class);
+	
+//	private DB_Action login_tbl_act = new DB_ActionImpl();
+	//-CheckImplのインスタンス生成-------------------------------------------------------------------------
 	@Autowired
 	private Check check_act;
+	
+//	private Check check_act = context.getBean(Check.class);
+	
+//	private Check check_act = new CheckImpl();
+	//-MessageListImplのインスタンス生成-------------------------------------------------------------------
 	@Autowired
 	private MessageList requestList;
+	
+//	private MessageList requestList = context.getBean(MessageList.class);
+
+//	private MessageList requestList = new MessageListImpl();
+	//-----------------------------------------------------------------------------------
 	
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response)
