@@ -1,56 +1,23 @@
-<?xml version="1.0" encoding="Shift_JIS"?>
-<!DOCTYPE web-app PUBLIC
-	"-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
-	"http://java.sun.com/dtd/web-app_2_3.dtd">
-	
-<web-app>
-
+<web-app id="WebApp_ID" version="2.4"
+    xmlns="http://java.sun.com/xml/ns/j2ee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+    http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    <display-name>Spring MVC Application</display-name>
 	<servlet>
-		<servlet-name>LoginServlet</servlet-name>
-		<servlet-class>jp.co.soramasu.servlet.LoginServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>NewMessageServlet</servlet-name>
-		<servlet-class>jp.co.soramasu.servlet.NewMessageServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>BackToBoardServlet</servlet-name>
-		<servlet-class>jp.co.soramasu.servlet.BackToBoardServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>EditMessageServlet</servlet-name>
-		<servlet-class>jp.co.soramasu.servlet.EditMessageServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>InputServlet</servlet-name>
-		<servlet-class>jp.co.soramasu.servlet.InputServlet</servlet-class>
+		<servlet-name>SpKeijiban</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
 	<servlet-mapping>
-		<servlet-name>LoginServlet</servlet-name>
-		<url-pattern>/login</url-pattern>
+		<servlet-name>SpKeijiban</servlet-name>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>NewMessageServlet</servlet-name>
-		<url-pattern>/newmessage</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>BackToBoardServlet</servlet-name>
-		<url-pattern>/backtoboard</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>EditMessageServlet</servlet-name>
-		<url-pattern>/editmessage</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>InputServlet</servlet-name>
-		<url-pattern>/input</url-pattern>
-	</servlet-mapping>
-
 </web-app>
 
 <!--
-¡DB’è‹`
+â– DBå®šç¾©
 create database keijiban encording 'EUC_JP' template template0;
 
 create table login_tbl
@@ -76,7 +43,7 @@ create table message_tbl
 with oids;
 alter table message_tbl owner to postgres;
 
-//ƒe[ƒuƒ‹ì¬•¶
+//ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆæ–‡
 create table response_tbl (
 	daynum date not null,
 	message text not null,
@@ -87,7 +54,7 @@ create table response_tbl (
 	constraint response_tbl_pkey primary key(distinationnum, responsenum)
 );
 
-//ŠÖ”ì¬
+//é–¢æ•°ä½œæˆ
 create OR REPLACE function getResNum(integer) returns integer as $$
 	select cast(
 		(select 1+(select count(responsenum) from response_tbl where distinationnum = $1)) as
@@ -95,7 +62,7 @@ create OR REPLACE function getResNum(integer) returns integer as $$
 	);
 $$ LANGUAGE SQL;
 
-//•ÔM•¶¶¬
+//è¿”ä¿¡æ–‡ç”Ÿæˆ
 insert into response_tbl(daynum,distinationnum,responsenum,user_name,edit_pass,message) 
 values ('now',<$1>,getresnum(<$1>),'<$2>','<$3>','<$4>');
 

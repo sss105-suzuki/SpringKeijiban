@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,8 +14,13 @@ import jp.co.soramasu.Interface.DB_Action;
 import jp.co.soramasu.Interface.MessageList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-public class LoginServlet extends HttpServlet {
+@Controller
+@RequestMapping("/login")
+public class LoginServlet {
 //	private ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 	
 	//-DB_ActionImplのインスタンス生成---------------------------------------------------------------------
@@ -42,6 +46,7 @@ public class LoginServlet extends HttpServlet {
 //	private MessageList requestList = new MessageListImpl();
 	//-----------------------------------------------------------------------------------
 	
+	@RequestMapping(method = RequestMethod.POST)
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException{
